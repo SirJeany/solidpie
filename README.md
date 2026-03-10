@@ -187,9 +187,35 @@ pi
 
 ---
 
+## Recommended Skills
+
+These two skills from [obra/superpowers](https://skills.sh/obra/superpowers) work brilliantly alongside our domain skill. They add structured thinking before you write code:
+
+```bash
+# Brainstorming — explores ideas, requirements and design before implementation
+npx skills add obra/superpowers@brainstorming -g -y
+
+# Writing Plans — creates detailed implementation plans from specs
+npx skills add obra/superpowers@writing-plans -g -y
+```
+
+**Why these matter:**
+- **brainstorming** forces Pi to ask clarifying questions and propose approaches before jumping into code. Perfect for feature design.
+- **writing-plans** takes a design and breaks it into a step-by-step implementation plan. Great for sprint planning with Pi.
+
+**Together with our domain skill, the workflow becomes:**
+1. Ask Pi to brainstorm a feature → it asks smart questions using ISP/billing domain knowledge
+2. Approve the design → writing-plans creates an implementation plan
+3. Execute → Pi builds it with full domain context
+
+Browse more skills at https://skills.sh or search: `npx skills find <topic>`
+
+---
+
 ## After the Presentation
 
 Things the team can do next:
+- **Install the recommended skills** above (brainstorming + writing-plans)
 - **Explore more skills**: `npx skills find <topic>` (try: testing, spring boot, api design)
 - **Add to our skill**: contribute actual schemas, code patterns, business rules
 - **Build team-specific skills**: API conventions, code review checklist, deployment patterns
