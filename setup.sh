@@ -7,6 +7,51 @@ echo "║     Pi Coding Agent — Setup                  ║"
 echo "╚══════════════════════════════════════════════╝"
 echo ""
 
+# --- Helper: run with sudo if needed (skip if already root) ---
+run_privileged() {
+    if [ "$(id -u)" -eq 0 ]; then
+        "$@"
+    else
+        sudo "$@"
+    fi
+}
+
+# --- Step 0: Ensure basic prerequisites (curl, sudo) ---
+echo "🔍 Checking prerequisites..."
+
+OS="$(uname -s)"
+if [ "$OS" = "Linux" ]; then
+    MISSING=""
+    command -v curl &> /dev/null || MISSING="$MISSING curl"
+    command -v sudo &> /dev/null || { [ "$(id -u)" -ne 0 ] && MISSING="$MISSING sudo"; }
+
+    if [ -n "$MISSING" ]; then
+        echo "📦 Installing missing prerequisites:$MISSING"
+        if command -v apt-get &> /dev/null; then
+            run_privileged apt-get update -qq
+            run_privileged apt-get install -y -qq $MISSING
+        elif command -v dnf &> /dev/null; then
+            run_privileged dnf install -y -q $MISSING
+        elif command -v pacman &> /dev/null; then
+            run_privileged pacman -Sy --noconfirm $MISSING
+        else
+            echo "❌ Cannot install:$MISSING — no supported package manager found."
+            echo "   Please install them manually and re-run this script."
+            exit 1
+        fi
+        echo "✅ Prerequisites installed"
+    else
+        echo "✅ Prerequisites OK (curl, sudo)"
+    fi
+elif [ "$OS" = "Darwin" ]; then
+    if ! command -v curl &> /dev/null; then
+        echo "❌ curl not found. Install Xcode CLI tools: xcode-select --install"
+        exit 1
+    fi
+    echo "✅ Prerequisites OK"
+fi
+echo ""
+
 # --- Step 1: Check/install Node.js ---
 if command -v node &> /dev/null; then
     NODE_VERSION=$(node -v)
@@ -21,15 +66,15 @@ else
         Linux*)
             if command -v apt-get &> /dev/null; then
                 echo "   Detected: Debian/Ubuntu"
-                curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
-                sudo apt-get install -y nodejs
+                curl -fsSL https://deb.nodesource.com/setup_22.x | run_privileged bash -
+                run_privileged apt-get install -y nodejs
             elif command -v dnf &> /dev/null; then
                 echo "   Detected: Fedora/RHEL"
-                curl -fsSL https://rpm.nodesource.com/setup_22.x | sudo bash -
-                sudo dnf install -y nodejs
+                curl -fsSL https://rpm.nodesource.com/setup_22.x | run_privileged bash -
+                run_privileged dnf install -y nodejs
             elif command -v pacman &> /dev/null; then
                 echo "   Detected: Arch"
-                sudo pacman -Sy nodejs npm --noconfirm
+                run_privileged pacman -Sy nodejs npm --noconfirm
             else
                 echo "❌ Could not detect package manager."
                 echo "   Install Node.js 20+ manually: https://nodejs.org/"
