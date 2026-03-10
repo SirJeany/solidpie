@@ -31,7 +31,7 @@ A self-contained demo for introducing [Pi](https://github.com/badlogic/pi-mono/t
 - Pi is a **terminal-based coding agent** — think of it as a pair programmer in your terminal
 - It can read files, write files, edit code, and run commands — that's the whole toolset
 - It works with the AI provider **you choose**: Gemini, Claude, ChatGPT, Copilot, and more
-- **Free to use** with Google Gemini CLI (just your Google account)
+- **Free to use** with Google Gemini CLI (just your Google account) or GitHub Copilot (if you have a Copilot subscription)
 - It's **extensible** — you can teach it new things through Skills, without modifying Pi itself
 
 **The pitch:**
@@ -67,19 +67,20 @@ cd solidpie
 # Start Pi
 pi
 
-# Login with Gemini (opens browser for Google OAuth)
+# Login — pick whichever you have
 /login
-# → Select "Google Gemini CLI"
-# → Authorize in browser
+# Option A → Select "Google Gemini CLI" → Authorize with your Google account
+# Option B → Select "GitHub Copilot" → Authorize with your GitHub account
 # → Done!
 
 # Select a model
 /model
-# → Pick a Gemini model
+# → Pick a Gemini or Copilot model
 ```
 
 **Talking point:**
-> "That's it. Three commands and you're up. The Gemini CLI login is free with any Google account —
+> "That's it. Three commands and you're up. Gemini CLI is free with any Google account,
+> and if you already have GitHub Copilot through work, that works too —
 > no API keys, no billing setup, no procurement approval needed."
 
 ---
@@ -170,7 +171,7 @@ Get the room involved.
 # Everyone runs:
 ./setup.sh
 pi
-/login   # → Google Gemini CLI
+/login   # → Google Gemini CLI or GitHub Copilot
 ```
 
 **Give them these starter prompts:**
@@ -190,7 +191,7 @@ pi
 
 - **Pre-install everything** on your machine as backup. Network issues during live demos are real.
 - **Have the demo prompts ready** to paste — don't type them live.
-- **If Gemini rate-limits you**, switch to another model: `/model` (you can use Claude or Copilot as backup).
+- **If one provider rate-limits you**, switch to another model: `/model` (you can log into both Gemini and Copilot as fallbacks).
 - **Keep it conversational** — this isn't a training session, it's a "look what's possible" moment.
 - **The skill is the hook, not the destination** — the real value is the team building on top of this together.
 
@@ -238,7 +239,7 @@ Things the team can do next:
 |--------|---------|
 | Install everything | `./setup.sh` |
 | Start Pi | `pi` |
-| Login | `/login` → Google Gemini CLI |
+| Login | `/login` → Google Gemini CLI or GitHub Copilot |
 | Switch model | `/model` or `Ctrl+L` |
 | Find skills | `npx skills find <query>` |
 | Reload skills | `/reload` |
