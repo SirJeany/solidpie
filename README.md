@@ -50,7 +50,7 @@ Do this live on a fresh terminal. If you're worried about network issues, pre-in
 
 ```bash
 # Clone this repo (or have it ready)
-git clone https://github.com/carlheinz/solidpie.git
+git clone https://github.com/SirJeany/solidpie.git
 cd solidpie
 
 # Run setup — installs Node (if needed), Pi, and our skill
@@ -133,7 +133,7 @@ Write the actual code in a dunning/ folder here.
 
 **For the frontend devs:**
 ```
-Create an Angular component for a customer self-service invoice
+Create an Vue component for a customer self-service invoice
 list. It should show invoice number, date, amount, status with
 colour coding (paid=green, overdue=red, pending=amber), and a
 "Pay Now" button for unpaid invoices. Write the actual component

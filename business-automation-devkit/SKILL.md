@@ -1,6 +1,6 @@
 ---
 name: business-automation-devkit
-description: "Domain expertise for ISP, telco, and business automation software development. Use when building features for: billing & subscription management, service provisioning & order fulfillment, CRM & sales pipeline, customer self-service portals, support & ticketing, debtor management & collections, usage metering, RADIUS/network integration, or any business automation workflow. Covers both backend (Java/Spring) and frontend (Angular/Vue) patterns."
+description: "Domain expertise for ISP, telco, and business automation software development. Use when building features for: billing & subscription management, service provisioning & order fulfillment, CRM & sales pipeline, customer self-service portals, support & ticketing, debtor management & collections, usage metering, RADIUS/network integration, or any business automation workflow. Covers both backend (Java 8, Tomcat, no extra frameworks, maven dependency management) and frontend (Vue) patterns."
 ---
 
 # Business Automation Dev Kit
